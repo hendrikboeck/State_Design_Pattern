@@ -1,5 +1,5 @@
 # Visual Studio Code
-*/.vscode
+.vscode
 */.DS_Store
 
 # Precompiled Headers
