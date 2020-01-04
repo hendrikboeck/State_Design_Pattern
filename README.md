@@ -2,7 +2,7 @@
 
 ### States
 
-![](markdown/state.png)
+![](markdown/StateD_XRayMachine.png)
 
 ### Class diagram
 
