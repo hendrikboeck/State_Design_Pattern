@@ -34,20 +34,20 @@ endif
 
 # COMPILER - SETTINGS
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall
-LDFLAGS = 
+CXXFLAGS = -std=c++11 -Wall
+LDFLAGS =
 
 # MAKEFILE SETTINGS
 APP = dp_state_example
-FILEEXT = .cpp
+EXT = .cpp
 SRCDIR = src
 BUILDDIR = build/$(PLATFORM)
 OBJDIR = $(BUILDDIR)/obj
 
 # Source- and Objectfiles (path to files)
-SRC = $(wildcard $(SRCDIR)/*$(FILEEXT))
-OBJ = $(SRC:$(SRCDIR)/%$(FILEEXT) = $(OBJDIR)/%.o)
-DEP = $(OBJ:$(OBJDIR)/%.o = $(BUILDDIR)/%.d)
+SRC = $(wildcard $(SRCDIR)/*$(EXT))
+OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
+DEP = $(OBJ:$(OBJDIR)/%.o=$(BUILDDIR)/%.d)
 BUILD = build $(BUILDDIR) $(OBJDIR)
 
 # Unix OS variables and clean settings
@@ -57,49 +57,47 @@ DELOBJ = $(OBJ) $(DEP)
 # Windows OS variables and clean settings
 DEL = del
 EXE = .exe
-WDELOBJ = $(SRC:$(SRCDIR)/%$(FILEEXT) = $(OBJDIR)\\%.o) \
-	$(OBJ:$(OBJDIR)/%.o = $(BUILDDIR)\\*.d)
+WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT) = $(OBJDIR)\\%.o) $(OBJ:$(OBJDIR)/%.o = $(BUILDDIR)\\*.d)
 
 ##
 # TARGETS OF MAKEFILE
 #
 
-all: dir $(APP)
+all: $(BUILDDIR)/$(APP)
 
 # Build the app out of obj-files
 $(BUILDDIR)/$(APP): $(OBJ)
 	@echo "build $@"
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+	@$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Create all dependencies
-$(BUILDDIR)/%.d: $(SRCDIR)/%$(FILEEXT)
+$(BUILDDIR)/%.d: $(SRCDIR)/%$(EXT)
 	@echo "build $@ from $<"
-	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:$(BUILDDIR)/%.d = $(OBJDIR)/%.o) >$@
+	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:$(BUILDDIR)/%.d=$(OBJDIR)/%.o) >$@
 
 # Inlude all .h files
 -include $(DEP)
 
 # Building the o-files out of cpp-files with it's h-files  
-$(OBJDIR)/%.o: $(SRCDIR)/%$(FILEEXT)
+$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
 	@echo "build $@ from $<"
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
+	@$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 ##
 # CLEANING AND CREATING FOLDERS FOR UNIX
 #
 
 # Creates directories if none exist
-.PHONY: dir
-dir:
+.PHONY: directories
+directories:
 	@echo "build directories"
 	@mkdir -p $(BUILD)
 
 # Cleans the whole project
 .PHONY: clean
 clean:
-	$(RM) -r -f ./build
+	$(RM) -r -f $(DELOBJ)
 
 .PHONY: tidy
 tidy:
 	$(RM) -f $(DEP)
-
