@@ -28,6 +28,8 @@
  * Implementation of interface XRayState
  */
 
+XRayState::~XRayState() {}
+
 void XRayState::turn_on(XRayMachine *m)
 {
     std::cerr << "unexpected error: <turn_on> failed to execute; machine"
@@ -62,9 +64,9 @@ void XRayState::take_picture(XRayMachine *m)
  * Implementation of class XRayOff
  */
 
-XRayOff::XRayOff() = default;
+XRayOff::XRayOff(){};
 
-XRayOff::~XRayOff() = default;
+XRayOff::~XRayOff(){};
 
 void XRayOff::turn_on(XRayMachine *m)
 {
@@ -77,9 +79,9 @@ void XRayOff::turn_on(XRayMachine *m)
  * Implementation of class XRayIdle
  */
 
-XRayIdle::XRayIdle() = default;
+XRayIdle::XRayIdle(){};
 
-XRayIdle::~XRayIdle() = default;
+XRayIdle::~XRayIdle(){};
 
 void XRayIdle::turn_off(XRayMachine *m)
 {
@@ -100,9 +102,9 @@ void XRayIdle::uncover_tube(XRayMachine *m)
  * Implementation of class XRayPictureMode
  */
 
-XRayPictureMode::XRayPictureMode() = default;
+XRayPictureMode::XRayPictureMode(){};
 
-XRayPictureMode::~XRayPictureMode() = default;
+XRayPictureMode::~XRayPictureMode(){};
 
 void XRayPictureMode::turn_off(XRayMachine *m)
 {

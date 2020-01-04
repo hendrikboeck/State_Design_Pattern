@@ -17,11 +17,12 @@
 /*************************************************************************/
 
 /*
- * File: xraymachine.c
+ * File: xraymachine.h
  * -------------------
  * This file defines the class XRayMachine
  */
 
+// FIXME: Include-protection is not correct
 #ifndef XRAYMACHINE_H_
 #define XRAYMACHINE_H_
 
@@ -33,8 +34,6 @@
 class XRayMachine
 {
 public:
-    XRayState *cur_state;
-
     /**
      * constructor of XRayMachine
      */
@@ -86,6 +85,8 @@ public:
      * error-message will be created.
      */
     void take_picture();
+
+    XRayState *cur_state;
 };
 
 #endif // XRAYMACHINE_H_

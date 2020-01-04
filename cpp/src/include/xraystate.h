@@ -22,6 +22,7 @@
  * This file defines the interface XRayState and all its subclasses
  */
 
+// FIXME: Include-protection is not correct
 #ifndef XRAYSTATE_H_
 #define XRAYSTATE_H_
 
@@ -124,4 +125,4 @@ public:
     void take_picture(XRayMachine *m);
 };
 
-#endif // XRAYSTATE_H_
+#endif

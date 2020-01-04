@@ -34,7 +34,7 @@ endif
 
 # COMPILER - SETTINGS
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -Wall
 LDFLAGS =
 
 # MAKEFILE SETTINGS
