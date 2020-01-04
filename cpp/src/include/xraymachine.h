@@ -22,8 +22,8 @@
  * This file defines the class XRayMachine
  */
 
-#ifndef MACHINE_H_
-#define MACHINE_H_
+#ifndef XRAYMACHINE_H_
+#define XRAYMACHINE_H_
 
 #include "xraystate.h"
 
@@ -88,4 +88,4 @@ public:
     void take_picture();
 };
 
-#endif // MACHINE_H_
+#endif // XRAYMACHINE_H_

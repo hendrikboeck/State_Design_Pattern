@@ -22,8 +22,8 @@
  * This file defines the interface XRayState and all its subclasses
  */
 
-#ifndef STATE_H_
-#define STATE_H_
+#ifndef XRAYSTATE_H_
+#define XRAYSTATE_H_
 
 #include <iostream>
 #include "xraymachine.h"
@@ -124,4 +124,4 @@ public:
     void take_picture(XRayMachine *m);
 };
 
-#endif
+#endif // XRAYSTATE_H_

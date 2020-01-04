@@ -1,4 +1,5 @@
 #include "include/xraymachine.h"
+#include "include/xraystate.h"
 
 int main(int argc, char **argv)
 {
