@@ -41,8 +41,8 @@ LDFLAGS =
 APP = dp_state_example
 EXT = .cpp
 SRCDIR = src
-BUILDDIR = build/$(PLATFORM)
-OBJDIR = $(BUILDDIR)/obj
+BUILDDIR = build\$(PLATFORM)
+OBJDIR = $(BUILDDIR)\obj
 
 # Source- and Objectfiles (path to files)
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
