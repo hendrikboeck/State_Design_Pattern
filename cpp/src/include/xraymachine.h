@@ -22,11 +22,13 @@
  * This file defines the class XRayMachine
  */
 
-// FIXME: Include-protection is not correct
 #ifndef XRAYMACHINE_H_
 #define XRAYMACHINE_H_
 
 #include "xraystate.h"
+
+class XRayState;
+class XRayIdle;
 
 /**
  * Definition of XRayMachine-class

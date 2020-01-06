@@ -22,12 +22,13 @@
  * This file defines the interface XRayState and all its subclasses
  */
 
-// FIXME: Include-protection is not correct
 #ifndef XRAYSTATE_H_
 #define XRAYSTATE_H_
 
 #include <iostream>
 #include "xraymachine.h"
+
+class XRayMachine;
 
 /**
  * Definition of interface XRayState
@@ -35,9 +36,7 @@
 class XRayState
 {
 public:
-    /**
-     * Make class XRayState fullvirtual
-     */
+
     virtual ~XRayState() = 0;
 
     /**
@@ -48,7 +47,7 @@ public:
      * IDLE. If the machine is currently in another state than OFF, an 
      * adequate error-message is given.
      */
-    virtual void turn_on(XRayMachine *m);
+    virtual void turn_on(XRayMachine *m) = 0;
 
     /**
      * Function: turn_off
@@ -58,7 +57,7 @@ public:
      * besides OFF, to OFF. If the machine is currently in the state OFF,
      * an adequate error-message is given.
      */
-    virtual void turn_off(XRayMachine *m);
+    virtual void turn_off(XRayMachine *m) = 0;
 
     /**
      * Function: cover_tube
@@ -68,7 +67,7 @@ public:
      * m from PICTURE_MODE to IDLE. If the machine is currently in another
      * state than PICTURE_MODE, an adequate error-message is given.  
      */
-    virtual void cover_tube(XRayMachine *m);
+    virtual void cover_tube(XRayMachine *m) = 0;
 
     /**
      * Function: uncover_tube
@@ -78,7 +77,7 @@ public:
      * of m from IDLE to PICTURE_MODE. If the machine is currently in 
      * another state than IDLE, an adequate error-message is given.
      */
-    virtual void uncover_tube(XRayMachine *m);
+    virtual void uncover_tube(XRayMachine *m) = 0;
 
     /**
      * Function: take_picture
@@ -88,7 +87,7 @@ public:
      * state of m. If the machine is currently in another state than 
      * PICTURE_MODE, an adequate error-message is given.
      */
-    virtual void take_picture(XRayMachine *m);
+    virtual void take_picture(XRayMachine *m) = 0;
 };
 
 /**
@@ -102,6 +101,10 @@ public:
     XRayOff();
     ~XRayOff();
     void turn_on(XRayMachine *m);
+    void turn_off(XRayMachine *m);
+    void cover_tube(XRayMachine *m);
+    void uncover_tube(XRayMachine *m);
+    void take_picture(XRayMachine *m);
 };
 
 // State: IDLE
@@ -110,8 +113,11 @@ class XRayIdle : public XRayState
 public:
     XRayIdle();
     ~XRayIdle();
+    void turn_on(XRayMachine *m);
     void turn_off(XRayMachine *m);
+    void cover_tube(XRayMachine *m);
     void uncover_tube(XRayMachine *m);
+    void take_picture(XRayMachine *m);
 };
 
 // State: PICTURE_MODE
@@ -120,8 +126,10 @@ class XRayPictureMode : public XRayState
 public:
     XRayPictureMode();
     ~XRayPictureMode();
+    void turn_on(XRayMachine *m);
     void turn_off(XRayMachine *m);
     void cover_tube(XRayMachine *m);
+    void uncover_tube(XRayMachine *m);
     void take_picture(XRayMachine *m);
 };
 

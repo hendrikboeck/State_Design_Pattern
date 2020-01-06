@@ -24,49 +24,15 @@
 
 #include "include/xraystate.h"
 
-/**
- * Implementation of interface XRayState
- */
-
-XRayState::~XRayState() {}
-
-void XRayState::turn_on(XRayMachine *m)
-{
-    std::cerr << "unexpected error: <turn_on> failed to execute; machine"
-              << "is in wrong state." << std::endl;
-}
-
-void XRayState::turn_off(XRayMachine *m)
-{
-    std::cerr << "unexpected error: <turn_off> failed to execute; machine"
-              << "is in wrong state." << std::endl;
-}
-
-void XRayState::cover_tube(XRayMachine *m)
-{
-    std::cerr << "unexpected error: <cover_tube> failed to execute; "
-              << "machine is in wrong state." << std::endl;
-}
-
-void XRayState::uncover_tube(XRayMachine *m)
-{
-    std::cerr << "unexpected error: <uncover_tube> failed to execute; "
-              << "machine is in wrong state." << std::endl;
-}
-
-void XRayState::take_picture(XRayMachine *m)
-{
-    std::cerr << "unexpected error: <take_picture> failed to execute; "
-              << "machine is in wrong state." << std::endl;
-}
+XRayState::~XRayState() = default;
 
 /**
  * Implementation of class XRayOff
  */
 
-XRayOff::XRayOff(){};
+XRayOff::XRayOff() = default;
 
-XRayOff::~XRayOff(){};
+XRayOff::~XRayOff() = default;
 
 void XRayOff::turn_on(XRayMachine *m)
 {
@@ -75,19 +41,55 @@ void XRayOff::turn_on(XRayMachine *m)
     delete this;
 }
 
+void XRayOff::turn_off(XRayMachine *m)
+{
+    std::cerr << "Can not turn off machine. Machine is already turned";
+    std::cerr << " off." << std::endl;
+}
+
+void XRayOff::cover_tube(XRayMachine *m)
+{
+    std::cerr << "Can not cover up X-raytube. X-raymachine is currently";
+    std::cerr << " turned off." << std::endl;
+}
+
+void XRayOff::uncover_tube(XRayMachine *m)
+{
+    std::cerr << "Can not uncover X-raytube. X-raymachine is currently";
+    std::cerr << " turned off." << std::endl;
+}
+
+void XRayOff::take_picture(XRayMachine *m)
+{
+    std::cerr << "Can not take picture. X-raymachine is currently turned";
+    std::cerr << " off." << std::endl;
+}
+
 /**
  * Implementation of class XRayIdle
  */
 
-XRayIdle::XRayIdle(){};
+XRayIdle::XRayIdle() = default;
 
-XRayIdle::~XRayIdle(){};
+XRayIdle::~XRayIdle() = default;
+
+void XRayIdle::turn_on(XRayMachine *m)
+{
+    std::cerr << "Can not turn on machine. Machine is already turned";
+    std::cerr << " on." << std::endl;
+}
 
 void XRayIdle::turn_off(XRayMachine *m)
 {
     std::cout << "XRayMachine has been turned off." << std::endl;
     m->cur_state = new XRayOff();
     delete this;
+}
+
+void XRayIdle::cover_tube(XRayMachine *m)
+{
+    std::cerr << "Can not cover up X-raytube. X-raytube is already";
+    std::cerr << " covered." << std::endl;
 }
 
 void XRayIdle::uncover_tube(XRayMachine *m)
@@ -98,13 +100,25 @@ void XRayIdle::uncover_tube(XRayMachine *m)
     delete this;
 }
 
+void XRayIdle::take_picture(XRayMachine *m)
+{
+    std::cerr << "Can not take picture. X-raymachine is currently running";
+    std::cerr << " in idle." << std::endl;
+}
+
 /**
  * Implementation of class XRayPictureMode
  */
 
-XRayPictureMode::XRayPictureMode(){};
+XRayPictureMode::XRayPictureMode() = default;
 
-XRayPictureMode::~XRayPictureMode(){};
+XRayPictureMode::~XRayPictureMode() = default;
+
+void XRayPictureMode::turn_on(XRayMachine *m)
+{
+    std::cerr << "Can not turn on machine. Machine is already turned";
+    std::cerr << " on." << std::endl;
+}
 
 void XRayPictureMode::turn_off(XRayMachine *m)
 {
@@ -119,6 +133,12 @@ void XRayPictureMode::cover_tube(XRayMachine *m)
     std::cout << std::endl;
     m->cur_state = new XRayIdle();
     delete this;
+}
+
+void XRayPictureMode::uncover_tube(XRayMachine *m)
+{
+    std::cerr << "Can not uncover X-raytube. X-raytube is already";
+    std::cerr << " uncovered." << std::endl;
 }
 
 void XRayPictureMode::take_picture(XRayMachine *m)
