@@ -38,7 +38,7 @@ CXXFLAGS = -Wall
 LDFLAGS =
 
 # MAKEFILE SETTINGS
-APP = dp_state_example
+APP = XRayMachine
 EXT = .cpp
 SRCDIR = src
 ifeq ($(OS),Windows_NT)
