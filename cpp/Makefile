@@ -29,7 +29,7 @@
 ifeq ($(OS),Windows_NT)
 PLATFORM = windows
 else
-PLATFORM = unix
+PLATFORM = unixlike
 endif
 
 # COMPILER - SETTINGS
