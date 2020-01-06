@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* State Design Pattern (C++ Implementation)                             */
+/* XRay State Machine (C++ Implementation)                               */
 /* Copyright (C) 2020 by Hendrik Boeck                                   */
 /*                                                                       */
 /* This program is free software: you can redistribute it and/or modify  */
@@ -64,7 +64,7 @@ public:
      * Function: cover_tube
      * Usage: m.cover_tube()
      * ---------------------
-     * Covers the x-raytube if not allready covered. 
+     * Covers the x-raytube, if not allready covered. 
      */
     void cover_tube();
 

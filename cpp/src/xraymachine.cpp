@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* State Design Pattern (C++ Implementation)                             */
+/* XRay State Machine (C++ Implementation)                               */
 /* Copyright (C) 2020 by Hendrik Boeck                                   */
 /*                                                                       */
 /* This program is free software: you can redistribute it and/or modify  */
