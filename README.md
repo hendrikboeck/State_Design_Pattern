@@ -1,4 +1,4 @@
-# XRay State Machine
+# X-ray State Machine
 
 ## Builing
 
