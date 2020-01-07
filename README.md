@@ -2,8 +2,6 @@
 
 ## Builing
 
-### Linux/MacOS
-
 Clone the Git-repository (HTTPS)
 ```
 git clone https://github.com/hendrikboeck/XRay_State_Machine.git
