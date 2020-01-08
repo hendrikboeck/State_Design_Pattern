@@ -62,7 +62,7 @@ DELOBJ = $(OBJ) $(DEP)
 # Windows OS variables and clean settings
 DEL = del
 EXE = .exe
-WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT) = $(OBJDIR)\\%.o) $(OBJ:$(OBJDIR)/%.o = $(BUILDDIR)\\*.d)
+WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o) $(OBJ:$(OBJDIR)/%.o=$(BUILDDIR)\\*.d)
 
 ##
 # TARGETS OF MAKEFILE
@@ -92,17 +92,38 @@ $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
 # CLEANING AND CREATING FOLDERS FOR UNIX
 #
 
-# Creates directories if none exist
-.PHONY: directories
-directories:
-	@echo "build directories"
+# Creates directories, if none exist
+.PHONY: dir
+dir:
+	@echo "Building Directories"
 	@mkdir -p $(BUILD)
 
-# Cleans the whole project
+# Cleans up the whole project
 .PHONY: clean
 clean:
 	$(RM) -r -f $(DELOBJ)
 
+# Only removes .d-files
 .PHONY: tidy
 tidy:
 	$(RM) -f $(DEP)
+
+##
+# CLEANING AND CREATING FOLDERS IN WINDOWS
+#
+
+# Creates directories, if none exist
+.PHONY: dirw
+dirw:
+	@echo "Building Directories"
+	@mkdir $(BUILD)
+
+# Cleans up the whole project
+.PHONY: cleanw
+cleanw:
+	$(DEL) $(WDELOBJ)
+
+# Only removes .d-files
+.PHONY: tidyw
+tidyw:
+	$(DEL) $(DEP)
