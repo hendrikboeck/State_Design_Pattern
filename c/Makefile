@@ -33,13 +33,13 @@ PLATFORM = unixlike
 endif
 
 # COMPILER - SETTINGS
-CXX = g++
-CXXFLAGS = -Wall -std=c++2a
+CXX = gcc
+CXXFLAGS = -Wall
 LDFLAGS =
 
 # MAKEFILE SETTINGS
 APP = XRayMachine
-EXT = .cpp
+EXT = .c
 SRCDIR = src
 ifeq ($(OS),Windows_NT)
 BUILDDIR = build\$(PLATFORM)
