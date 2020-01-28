@@ -1,20 +1,38 @@
 # X-ray State Machine
 
-## Builing
+## Building and Running Applications
 
-Clone the Git-repository (HTTPS)
+### Building C++ CLI-Application
+
 ```
 git clone https://github.com/hendrikboeck/XRay_State_Machine.git
-```
-Open folder `cpp` inside the commandline
-```
 cd XRay_State_Machine/cpp
-```
-Make project
-```
 make all
 ```
 
+### Building C CLI-Application
+
+```
+git clone https://github.com/hendrikboeck/XRay_State_Machine.git
+cd XRay_State_Machine/c
+make all
+```
+
+### Running Python3 CLI-Application
+
+```
+git clone https://github.com/hendrikboeck/XRay_State_Machine.git
+cd XRay_State_Machine/python3/src
+python3 unittest.py
+```
+
+### Runnning P5.js Graphical-Application
+
+Repository von Github klonen oder als .zip herunterladen.
+```
+git clone https://github.com/hendrikboeck/XRay_State_Machine.git
+```
+In den Ordner `p5_javascript` navigieren und die Datei `index.html` mit ihrem Webbrowser aufrufen.
 
 ## Overview
 
