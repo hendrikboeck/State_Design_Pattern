@@ -1,4 +1,4 @@
-#include "include/xraymachine.h"
+#include "xraymachine.h"
 
 XRayMachine new_xraymachine()
 {

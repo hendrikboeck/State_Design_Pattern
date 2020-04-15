@@ -33,8 +33,8 @@ PLATFORM = unixlike
 endif
 
 # COMPILER - SETTINGS
-CXX = gcc
-CXXFLAGS = -Wall
+CC = gcc
+CFLAGS = -Wall -Iinclude
 LDFLAGS =
 
 # MAKEFILE SETTINGS
@@ -57,7 +57,7 @@ BUILD = build $(BUILDDIR) $(OBJDIR)
 
 # Unix OS variables and clean settings
 RM = rm
-DELOBJ = $(OBJ) $(DEP)
+DELOBJ = $(BUILD) $(OBJ) $(DEP)
 
 # Windows OS variables and clean settings
 DEL = del
@@ -73,12 +73,12 @@ all: $(BUILDDIR)/$(APP)
 # Build the app out of obj-files
 $(BUILDDIR)/$(APP): $(OBJ)
 	@echo "build $@"
-	@$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+	@$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Create all dependencies
 $(BUILDDIR)/%.d: $(SRCDIR)/%$(EXT)
 	@echo "build $@ from $<"
-	@$(CXX) $(CXXFLAGS) $< -MM -MT $(@:$(BUILDDIR)/%.d=$(OBJDIR)/%.o) >$@
+	@$(CC) $(CFLAGS) $< -MM -MT $(@:$(BUILDDIR)/%.d=$(OBJDIR)/%.o) >$@
 
 # Inlude all .h files
 -include $(DEP)
@@ -86,7 +86,7 @@ $(BUILDDIR)/%.d: $(SRCDIR)/%$(EXT)
 # Building the o-files out of cpp-files with it's h-files  
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
 	@echo "build $@ from $<"
-	@$(CXX) $(CXXFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 ##
 # CLEANING AND CREATING FOLDERS FOR UNIX

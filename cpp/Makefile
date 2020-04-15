@@ -34,7 +34,7 @@ endif
 
 # COMPILER - SETTINGS
 CXX = g++
-CXXFLAGS = -Wall -std=c++2a
+CXXFLAGS = -Wall -std=c++2a -Iinclude
 LDFLAGS =
 
 # MAKEFILE SETTINGS
@@ -57,7 +57,7 @@ BUILD = build $(BUILDDIR) $(OBJDIR)
 
 # Unix OS variables and clean settings
 RM = rm
-DELOBJ = $(OBJ) $(DEP)
+DELOBJ = $(OBJ) $(DEP) $(BUILD)
 
 # Windows OS variables and clean settings
 DEL = del

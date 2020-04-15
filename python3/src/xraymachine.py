@@ -25,6 +25,8 @@ import xraystate
 
 class XRayMachine:
 
+    cur_state=None
+
     ##
     # Function:     __init__
     # Usage:        m = XRayMachine()

@@ -23,7 +23,7 @@
  * dependencies.
  */
 
-#include "include/xraymachine.h"
+#include "xraymachine.h"
 
 int main(int argc, char **argv)
 {

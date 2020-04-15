@@ -1,4 +1,4 @@
-#include "include/xraystate.h"
+#include "xraystate.h"
 
 XRayState new_xraystate()
 {

@@ -22,7 +22,7 @@
  * This file implements the interface XRayState and all its subclasses
  */
 
-#include "include/xraystate.h"
+#include "xraystate.h"
 
 XRayState::~XRayState() = default;
 

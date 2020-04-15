@@ -22,7 +22,7 @@
  * This file implements the class XRayMachine
  */
 
-#include "include/xraymachine.h"
+#include "xraymachine.h"
 
 XRayMachine::XRayMachine()
 {
