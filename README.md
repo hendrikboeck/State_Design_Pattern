@@ -31,8 +31,10 @@ python3 unittest.py
 Repository von Github klonen oder als .zip herunterladen.
 ```
 git clone https://github.com/hendrikboeck/XRay_State_Machine.git
+mkdir XRay_State_Machine/p5/lib && cd XRay_State_Machine/p5/lib
+wget https://github.com/processing/p5.js/releases/download/1.1.9/p5.js
 ```
-In den Ordner `p5_javascript` navigieren und die Datei `index.html` mit ihrem Webbrowser aufrufen.
+In den Ordner `p5` navigieren und die Datei `index.html` mit ihrem Webbrowser aufrufen.
 
 ## Overview
 
