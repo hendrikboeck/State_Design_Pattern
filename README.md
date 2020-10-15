@@ -40,8 +40,8 @@ This Projects tries to emulate a very simplified version of a X-ray machine. The
 
 ### State diagram
 
-![](markdown/StateD_XRayMachine.png)
+![](.github/md/StateD_XRayMachine.png)
 
 ### Class diagram
 
-![](markdown/XRayMachine.png)
+![](.github/md/XRayMachine.png)
