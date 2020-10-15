@@ -7,6 +7,8 @@
 ```
 git clone https://github.com/hendrikboeck/XRay_State_Machine.git
 cd XRay_State_Machine/cpp
+mkdir build && cd build
+cmake ..
 make all
 ```
 
@@ -15,6 +17,8 @@ make all
 ```
 git clone https://github.com/hendrikboeck/XRay_State_Machine.git
 cd XRay_State_Machine/c
+mkdir build && cd build
+cmake ..
 make all
 ```
 
