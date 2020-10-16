@@ -22,10 +22,12 @@
  * This file defines the interface XRayState and all its subclasses
  */
 
-#ifndef XRAYSTATE_H_
-#define XRAYSTATE_H_
+#ifndef _XRAYSTATE_H
+#define _XRAYSTATE_H
 
 #include <iostream>
+#include <memory>
+
 #include "xraymachine.h"
 
 class XRayMachine;
@@ -33,61 +35,59 @@ class XRayMachine;
 /**
  * Definition of interface XRayState
  */
-class XRayState
-{
-public:
+class XRayState {
+ public:
+  virtual ~XRayState() = 0;
 
-    virtual ~XRayState() = 0;
+  /**
+   * Function: turn_on
+   * Usage: OFF.turn_on(m);
+   * ----------------------
+   * Turns on the XRayMachine and changes the state of m from OFF to
+   * IDLE. If the machine is currently in another state than OFF, an
+   * adequate error-message is given.
+   */
+  virtual void turn_on(XRayMachine *m) = 0;
 
-    /**
-     * Function: turn_on
-     * Usage: OFF.turn_on(m);
-     * ----------------------
-     * Turns on the XRayMachine and changes the state of m from OFF to 
-     * IDLE. If the machine is currently in another state than OFF, an 
-     * adequate error-message is given.
-     */
-    virtual void turn_on(XRayMachine *m) = 0;
+  /**
+   * Function: turn_off
+   * Usage: STATE.turn_off(m);
+   * -------------------------
+   * Turns off the XRayMachine and changes the state of m from any STATE,
+   * besides OFF, to OFF. If the machine is currently in the state OFF,
+   * an adequate error-message is given.
+   */
+  virtual void turn_off(XRayMachine *m) = 0;
 
-    /**
-     * Function: turn_off
-     * Usage: STATE.turn_off(m);
-     * -------------------------
-     * Turns off the XRayMachine and changes the state of m from any STATE,
-     * besides OFF, to OFF. If the machine is currently in the state OFF,
-     * an adequate error-message is given.
-     */
-    virtual void turn_off(XRayMachine *m) = 0;
+  /**
+   * Function: cover_tube
+   * Usage: PICTURE_MODE.cover_tube(m);
+   * ----------------------------------
+   * Covers up the X-ray-tube of the XRayMachine an changes the state of
+   * m from PICTURE_MODE to IDLE. If the machine is currently in another
+   * state than PICTURE_MODE, an adequate error-message is given.
+   */
+  virtual void cover_tube(XRayMachine *m) = 0;
 
-    /**
-     * Function: cover_tube
-     * Usage: PICTURE_MODE.cover_tube(m);
-     * ----------------------------------
-     * Covers up the X-ray-tube of the XRayMachine an changes the state of
-     * m from PICTURE_MODE to IDLE. If the machine is currently in another
-     * state than PICTURE_MODE, an adequate error-message is given.  
-     */
-    virtual void cover_tube(XRayMachine *m) = 0;
+  /**
+   * Function: uncover_tube
+   * Usage: IDLE.uncover_tube(m);
+   * ----------------------------
+   * Uncovers up the X-ray-tube of the XRayMachine an changes the state
+   * of m from IDLE to PICTURE_MODE. If the machine is currently in
+   * another state than IDLE, an adequate error-message is given.
+   */
+  virtual void uncover_tube(XRayMachine *m) = 0;
 
-    /**
-     * Function: uncover_tube
-     * Usage: IDLE.uncover_tube(m);
-     * ----------------------------
-     * Uncovers up the X-ray-tube of the XRayMachine an changes the state 
-     * of m from IDLE to PICTURE_MODE. If the machine is currently in 
-     * another state than IDLE, an adequate error-message is given.
-     */
-    virtual void uncover_tube(XRayMachine *m) = 0;
-
-    /**
-     * Function: take_picture
-     * Usage: PICTURE_MODE.take_picture(m);
-     * ------------------------------------
-     * Takes a X-ray-picture with the XRayMachine an does not change the
-     * state of m. If the machine is currently in another state than 
-     * PICTURE_MODE, an adequate error-message is given.
-     */
-    virtual void take_picture(XRayMachine *m) = 0;
+  /**
+   * Function: take_picture
+   * Usage: PICTURE_MODE.take_picture(m);
+   * ------------------------------------
+   * Takes a X-ray-picture with the XRayMachine an does not change the
+   * state of m. If the machine is currently in another state than
+   * PICTURE_MODE, an adequate error-message is given.
+   */
+  virtual void take_picture(XRayMachine *m) = 0;
 };
 
 /**
@@ -95,42 +95,39 @@ public:
  */
 
 // State: OFF
-class XRayOff : public XRayState
-{
-public:
-    XRayOff();
-    ~XRayOff();
-    void turn_on(XRayMachine *m);
-    void turn_off(XRayMachine *m);
-    void cover_tube(XRayMachine *m);
-    void uncover_tube(XRayMachine *m);
-    void take_picture(XRayMachine *m);
+class XRayOff : public XRayState {
+ public:
+  XRayOff() = default;
+  ~XRayOff() = default;
+  void turn_on(XRayMachine *m);
+  void turn_off(XRayMachine *m);
+  void cover_tube(XRayMachine *m);
+  void uncover_tube(XRayMachine *m);
+  void take_picture(XRayMachine *m);
 };
 
 // State: IDLE
-class XRayIdle : public XRayState
-{
-public:
-    XRayIdle();
-    ~XRayIdle();
-    void turn_on(XRayMachine *m);
-    void turn_off(XRayMachine *m);
-    void cover_tube(XRayMachine *m);
-    void uncover_tube(XRayMachine *m);
-    void take_picture(XRayMachine *m);
+class XRayIdle : public XRayState {
+ public:
+  XRayIdle() = default;
+  ~XRayIdle() = default;
+  void turn_on(XRayMachine *m);
+  void turn_off(XRayMachine *m);
+  void cover_tube(XRayMachine *m);
+  void uncover_tube(XRayMachine *m);
+  void take_picture(XRayMachine *m);
 };
 
 // State: PICTURE_MODE
-class XRayPictureMode : public XRayState
-{
-public:
-    XRayPictureMode();
-    ~XRayPictureMode();
-    void turn_on(XRayMachine *m);
-    void turn_off(XRayMachine *m);
-    void cover_tube(XRayMachine *m);
-    void uncover_tube(XRayMachine *m);
-    void take_picture(XRayMachine *m);
+class XRayPictureMode : public XRayState {
+ public:
+  XRayPictureMode() = default;
+  ~XRayPictureMode() = default;
+  void turn_on(XRayMachine *m);
+  void turn_off(XRayMachine *m);
+  void cover_tube(XRayMachine *m);
+  void uncover_tube(XRayMachine *m);
+  void take_picture(XRayMachine *m);
 };
 
-#endif
+#endif  // _XRAYSTATE_H

@@ -16,3 +16,4 @@ file(GLOB all_SRCS
 
 add_executable(${PROJECT_NAME} ${all_SRCS})
 target_link_libraries(${PROJECT_NAME} m)
+file(COPY scripts DESTINATION .)

@@ -25,6 +25,8 @@
 #ifndef XRAYMACHINE_H_
 #define XRAYMACHINE_H_
 
+#include <memory>
+
 #include "xraystate.h"
 
 class XRayState;
@@ -33,62 +35,66 @@ class XRayIdle;
 /**
  * Definition of XRayMachine-class
  */
-class XRayMachine
-{
-public:
-    /**
-     * constructor of XRayMachine
-     */
-    XRayMachine();
+class XRayMachine {
+ public:
+  /**
+   * constructor of XRayMachine
+   */
+  XRayMachine();
 
-    /**
-     * Destructor of XRayMachine
-     */
-    ~XRayMachine();
+  /**
+   * move-constructor of XRayMachine
+   */
+  XRayMachine(XRayMachine &&other);
 
-    /**
-     * Function: turn_on
-     * Usage: m.turn_on()
-     * ------------------
-     * Turns on the XRayMachine.
-     */
-    void turn_on();
+  /**
+   * Destructor of XRayMachine
+   */
+  ~XRayMachine() = default;
 
-    /**
-     * Function: turn_off
-     * Usage: m.turn_off()
-     * -------------------
-     * Turns off the XRayMachine.
-     */
-    void turn_off();
+  /**
+   * Function: turn_on
+   * Usage: m.turn_on()
+   * ------------------
+   * Turns on the XRayMachine.
+   */
+  void turn_on();
 
-    /**
-     * Function: cover_tube
-     * Usage: m.cover_tube()
-     * ---------------------
-     * Covers the x-raytube, if not allready covered. 
-     */
-    void cover_tube();
+  /**
+   * Function: turn_off
+   * Usage: m.turn_off()
+   * -------------------
+   * Turns off the XRayMachine.
+   */
+  void turn_off();
 
-    /**
-     * Function: unconver_tube
-     * Usage: m.unconver_tube()
-     * ------------------------
-     * Uncovers the x-raytube if current state allows it. Otherwise a
-     * useful error-message will be created.
-     */
-    void unconver_tube();
+  /**
+   * Function: cover_tube
+   * Usage: m.cover_tube()
+   * ---------------------
+   * Covers the x-raytube, if not allready covered.
+   */
+  void cover_tube();
 
-    /**
-     * Function: take_picture
-     * Usage: m.take_picture()
-     * -----------------------
-     * Takes a picture if current state allows it. Otherwise a useful
-     * error-message will be created.
-     */
-    void take_picture();
+  /**
+   * Function: unconver_tube
+   * Usage: m.unconver_tube()
+   * ------------------------
+   * Uncovers the x-raytube if current state allows it. Otherwise a
+   * useful error-message will be created.
+   */
+  void unconver_tube();
 
-    XRayState *cur_state;
+  /**
+   * Function: take_picture
+   * Usage: m.take_picture()
+   * -----------------------
+   * Takes a picture if current state allows it. Otherwise a useful
+   * error-message will be created.
+   */
+  void take_picture();
+
+  std::unique_ptr<XRayState> cur_state;
 };
 
-#endif // XRAYMACHINE_H_
+#endif  // XRAYMACHINE_H_

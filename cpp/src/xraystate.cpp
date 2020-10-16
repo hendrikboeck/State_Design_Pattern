@@ -24,124 +24,94 @@
 
 #include "xraystate.h"
 
-XRayState::~XRayState() = default;
+XRayState::~XRayState() {}
 
 /**
  * Implementation of class XRayOff
  */
 
-XRayOff::XRayOff() = default;
-
-XRayOff::~XRayOff() = default;
-
-void XRayOff::turn_on(XRayMachine *m)
-{
-    std::cout << "XRayMachine has been turned on." << std::endl;
-    m->cur_state = new XRayIdle();
-    delete this;
+void XRayOff::turn_on(XRayMachine *m) {
+  std::cout << "XRayMachine has been turned on." << std::endl;
+  m->cur_state = std::make_unique<XRayIdle>();
 }
 
-void XRayOff::turn_off(XRayMachine *m)
-{
-    std::cerr << "Can not turn off machine. Machine is already turned";
-    std::cerr << " off." << std::endl;
+void XRayOff::turn_off(XRayMachine *m) {
+  std::cerr << "Can not turn off machine. Machine is already turned off."
+            << std::endl;
 }
 
-void XRayOff::cover_tube(XRayMachine *m)
-{
-    std::cerr << "Can not cover up X-raytube. X-raymachine is currently";
-    std::cerr << " turned off." << std::endl;
+void XRayOff::cover_tube(XRayMachine *m) {
+  std::cerr
+      << "Can not cover up X-raytube. X-raymachine is currently turned off."
+      << std::endl;
 }
 
-void XRayOff::uncover_tube(XRayMachine *m)
-{
-    std::cerr << "Can not uncover X-raytube. X-raymachine is currently";
-    std::cerr << " turned off." << std::endl;
+void XRayOff::uncover_tube(XRayMachine *m) {
+  std::cerr
+      << "Can not uncover X-raytube. X-raymachine is currently turned off."
+      << std::endl;
 }
 
-void XRayOff::take_picture(XRayMachine *m)
-{
-    std::cerr << "Can not take picture. X-raymachine is currently turned";
-    std::cerr << " off." << std::endl;
+void XRayOff::take_picture(XRayMachine *m) {
+  std::cerr << "Can not take picture. X-raymachine is currently turned off."
+            << std::endl;
 }
 
 /**
  * Implementation of class XRayIdle
  */
 
-XRayIdle::XRayIdle() = default;
-
-XRayIdle::~XRayIdle() = default;
-
-void XRayIdle::turn_on(XRayMachine *m)
-{
-    std::cerr << "Can not turn on machine. Machine is already turned";
-    std::cerr << " on." << std::endl;
+void XRayIdle::turn_on(XRayMachine *m) {
+  std::cerr << "Can not turn on machine. Machine is already turned on."
+            << std::endl;
 }
 
-void XRayIdle::turn_off(XRayMachine *m)
-{
-    std::cout << "XRayMachine has been turned off." << std::endl;
-    m->cur_state = new XRayOff();
-    delete this;
+void XRayIdle::turn_off(XRayMachine *m) {
+  std::cout << "XRayMachine has been turned off." << std::endl;
+  m->cur_state = std::make_unique<XRayOff>();
 }
 
-void XRayIdle::cover_tube(XRayMachine *m)
-{
-    std::cerr << "Can not cover up X-raytube. X-raytube is already";
-    std::cerr << " covered." << std::endl;
+void XRayIdle::cover_tube(XRayMachine *m) {
+  std::cerr << "Can not cover up X-raytube. X-raytube is already covered."
+            << std::endl;
 }
 
-void XRayIdle::uncover_tube(XRayMachine *m)
-{
-    std::cout << "XRayMachine's X-ray-tube-cover has been removed.";
-    std::cout << std::endl;
-    m->cur_state = new XRayPictureMode();
-    delete this;
+void XRayIdle::uncover_tube(XRayMachine *m) {
+  std::cout << "XRayMachine's X-ray-tube-cover has been removed." << std::endl;
+  m->cur_state = std::make_unique<XRayPictureMode>();
 }
 
-void XRayIdle::take_picture(XRayMachine *m)
-{
-    std::cerr << "Can not take picture. X-raymachine is currently running";
-    std::cerr << " in idle." << std::endl;
+void XRayIdle::take_picture(XRayMachine *m) {
+  std::cerr
+      << "Can not take picture. X-raymachine is currently running in idle."
+      << std::endl;
 }
 
 /**
  * Implementation of class XRayPictureMode
  */
 
-XRayPictureMode::XRayPictureMode() = default;
-
-XRayPictureMode::~XRayPictureMode() = default;
-
-void XRayPictureMode::turn_on(XRayMachine *m)
-{
-    std::cerr << "Can not turn on machine. Machine is already turned";
-    std::cerr << " on." << std::endl;
+void XRayPictureMode::turn_on(XRayMachine *m) {
+  std::cerr << "Can not turn on machine. Machine is already turned on."
+            << std::endl;
 }
 
-void XRayPictureMode::turn_off(XRayMachine *m)
-{
-    std::cout << "XRayMachine has been turned off." << std::endl;
-    m->cur_state = new XRayOff();
-    delete this;
+void XRayPictureMode::turn_off(XRayMachine *m) {
+  std::cout << "XRayMachine has been turned off." << std::endl;
+  m->cur_state = std::make_unique<XRayOff>();
 }
 
-void XRayPictureMode::cover_tube(XRayMachine *m)
-{
-    std::cout << "XRayMachine's X-ray-tube-cover has been put in place.";
-    std::cout << std::endl;
-    m->cur_state = new XRayIdle();
-    delete this;
+void XRayPictureMode::cover_tube(XRayMachine *m) {
+  std::cout << "XRayMachine's X-ray-tube-cover has been put in place."
+            << std::endl;
+  m->cur_state = std::make_unique<XRayIdle>();
 }
 
-void XRayPictureMode::uncover_tube(XRayMachine *m)
-{
-    std::cerr << "Can not uncover X-raytube. X-raytube is already";
-    std::cerr << " uncovered." << std::endl;
+void XRayPictureMode::uncover_tube(XRayMachine *m) {
+  std::cerr << "Can not uncover X-raytube. X-raytube is already uncovered."
+            << std::endl;
 }
 
-void XRayPictureMode::take_picture(XRayMachine *m)
-{
-    std::cout << "A X-ray-picture has been taken." << std::endl;
+void XRayPictureMode::take_picture(XRayMachine *m) {
+  std::cout << "A X-ray-picture has been taken." << std::endl;
 }
