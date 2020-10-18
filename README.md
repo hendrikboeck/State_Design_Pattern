@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/hendrikboeck/xray_state_machine/badge/master)](https://www.codefactor.io/repository/github/hendrikboeck/xray_state_machine/overview/master)
+
 # X-ray State Machine
 
 ## Building and Running Applications
